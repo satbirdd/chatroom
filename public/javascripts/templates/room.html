@@ -1,0 +1,19 @@
+<p class="room-welcome"> Welcome to <span style="color: red; font-size: 20px;">{{ room.name }}</span> chat room! </p>
+<div class='well chart-show'>
+	<div ng-repeat="message in messageList" class="message-box">
+		<p>{{ message.email }} <br>
+		{{ message.content }} </p>
+	</div>
+</div>
+<form name="messageForm" ng-submit="sendMessage()">
+	<textarea rows="8", cols="80" ng-model="message.content" name="content" required>
+	</textarea>
+	<br>
+	<div>
+		<label for="user-email">Your Email:</label>
+		<input type="email" ng-model="email" value="Jessy" name="email" id="user-email" ng-show="!email" required />
+		<span class="email" ng-show="email">{{ email }}</span>
+		<br>
+		<button class="btn btn-primary btn-large" type="submit" ng-disabled="messageForm.$invalid">Send</button>
+	</div>
+</form>

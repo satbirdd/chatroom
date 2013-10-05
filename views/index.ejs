@@ -1,11 +1,16 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<html ng-app="chartroom">
+    <head>
+        <title>Chart Room: Demo</title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+    </head>
+    <body>
+        <div ng-view="" class="ng-view">
+        <div>
+        <script src="/javascripts/angular.min.js" type="text/javascript" charset="utf-8" async defer></script>
+        <script src="/socket.io/socket.io.js" type="text/javascript" charset="utf-8" async defer></script>
+        <script src="/javascripts/index.js" type="text/javascript" charset="utf-8" async defer></script>
+        <script src="/javascripts/controllers/room_list.js" type="text/javascript" chatset="utf-8" async defer></script>
+        <script src="/javascripts/controllers/room.js" type="text/javascript" chatset="utf-8" async defer></script>
+    </body>
 </html>

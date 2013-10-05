@@ -8,6 +8,7 @@ var express = require('express')
 	, user = require('./routes/user')
 	, http = require('http')
 	, path = require('path')
+	, util = require('util')
 	, app = express()
 
 // all environments
@@ -32,6 +33,22 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/users', user.list);
 
-http.createServer(app).listen(app.get('port'), function(){
+var server = http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+
+var io = require('socket.io').listen(server);
+
+io.sockets.on("connection", function(socket) {
+	socket.on("subscribe", function(data) {
+		socket.join(data.room);
+		io.sockets.in(data.room).emit("chart", {email: "系统消息：", content: "===有新的访客进入==="});
+	});
+	socket.on("unsubscribe", function(data) {
+		socket.leave(data.room);
+	});
+	socket.on("chart", function(data) {
+		io.sockets.in(data.room).emit("chart", data.message);
+	});
+});
+

@@ -1,0 +1,7 @@
+<span class="title">Choose a chart room you want in</span>
+<div class="list-group list-room">
+	<a ng-repeat="room in roomList" class="list-group-item" href="#/room/{{ room.id }}">
+		{{ room.name }}
+		<span class="badge">{{ room.inline_number }}</span>
+	</a>
+</div>
